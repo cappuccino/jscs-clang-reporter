@@ -1,0 +1,37 @@
+{
+  "name": "jscs-clang-reporter",
+  "version": "1.0.1",
+  "description": "Reporter for jscs that follows clang error style",
+  "homepage": "https://github.com/cappuccino/jscs-clang-reporter",
+  "keywords": [
+    "JSCS",
+    "reporter"
+  ],
+  "contributors": [
+    "Aparajita Fishman (http://www.aparajita.com)"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cappuccino/jscs-clang-reporter.git"
+  },
+  "bugs": "https://github.com/cappuccino/jscs-clang-reporter/issues",
+  "engines": {
+    "node": ">=4.1.0"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint lib && jscs lib",
+    "test": "npm run lint && mocha -s 2000",
+    "prepublish": "npm test"
+  },
+  "dependencies": {
+    "chalk": "^1.1.0"
+  },
+  "devDependencies": {
+    "code": "^1.5.0",
+    "eslint": "^1.5",
+    "eslint-config-cappuccino": "^1.1.0",
+    "jscs": "^2.2.0"
+  }
+}
