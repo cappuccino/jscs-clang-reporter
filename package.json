@@ -17,21 +17,22 @@
   },
   "bugs": "https://github.com/cappuccino/jscs-clang-reporter/issues",
   "engines": {
-    "node": ">=4.1.0"
+    "node": ">=0.12.0"
   },
   "main": "lib/index.js",
   "scripts": {
-    "lint": "eslint lib && jscs lib",
-    "test": "npm run lint && mocha -s 2000",
+    "lint": "node_modules/.bin/eslint lib && node_modules/.bin/jscs lib",
+    "test": "npm run lint && node test/test.js",
+    "generate-fixtures": "node test/generate.js",
     "prepublish": "npm test"
   },
   "dependencies": {
     "chalk": "^1.1.0"
   },
   "devDependencies": {
-    "code": "^1.5.0",
-    "eslint": "^1.5",
-    "eslint-config-cappuccino": "^1.1.0",
-    "jscs": "^2.2.0"
+    "eslint": "^1.6",
+    "eslint-config-cappuccino": "^1.1.10",
+    "jscs": "^2.2.0",
+    "jscs-cappuccino": "^1.0.0"
   }
 }
