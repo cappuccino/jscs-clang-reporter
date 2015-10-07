@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "eslint": "^1.6",
-    "eslint-config-cappuccino": "^1.1.10",
+    "eslint-config-cappuccino": "^1.0.0",
     "jscs": ">=1.8.0",
     "jscs-cappuccino": "^1.0.0"
   }
