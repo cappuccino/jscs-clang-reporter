@@ -23,8 +23,7 @@
   "scripts": {
     "lint": "node_modules/.bin/eslint lib && node_modules/.bin/jscs lib",
     "test": "npm run lint && node test/test.js",
-    "generate-fixtures": "node test/generate.js",
-    "prepublish": "npm test"
+    "generate-fixtures": "node test/generate.js"
   },
   "dependencies": {
     "chalk": "^1.1.0"
@@ -32,7 +31,7 @@
   "devDependencies": {
     "eslint": "^1.6",
     "eslint-config-cappuccino": "^1.1.10",
-    "jscs": "^2.2.0",
+    "jscs": ">=1.8.0",
     "jscs-cappuccino": "^1.0.0"
   }
 }
