@@ -87,7 +87,7 @@ You can customize these colors by passing your own color map in the `colors` opt
 
 Here are two equivalent color maps:
 
-```json
+```js
 {
     file: "bgBlue.yellow",
     location: "blue.underline",
