@@ -1,6 +1,8 @@
 jscs-clang-reporter
 ===================
 
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+
 This reporter for [JSCS](http://jscs.info) provides more concise output than the JSCS `console` reporter, but more information than the JSCS one-line reporters. The output is formatted and colored similar to the error output from `clang`.
 
 Here is sample output in non-verbose mode and verbose mode (passing -v on command line):
@@ -85,7 +87,7 @@ You can customize these colors by passing your own color map in the `colors` opt
 
 Here are two equivalent color maps:
 
-```js
+```json
 {
     file: "bgBlue.yellow",
     location: "blue.underline",
@@ -106,3 +108,9 @@ Here are two equivalent color maps:
 ```
 
 You do not need to set all of the values in the map if you only wish to override a few colors; only the elements whose keys are in the map will be affected. To turn off colorizing for an element, pass `null` as the value. Invalid element keys or styles will cause that item in the map to be ignored.
+
+[npm-url]: https://npmjs.org/package/jscs-clang-reporter
+[npm-image]: http://img.shields.io/npm/v/jscs-clang-reporter.svg?style=flat
+
+[travis-url]: https://travis-ci.org/cappuccino/jscs-clang-reporter
+[travis-image]: https://travis-ci.org/cappuccino/jscs-clang-reporter.svg?branch=master
