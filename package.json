@@ -33,8 +33,5 @@
     "eslint-config-cappuccino": ">=1.1.13",
     "jscs": ">=1.8.0",
     "jscs-cappuccino": "^1.0.0"
-  },
-  "peerDependencies": {
-    "jscs": ">=1.8.0"
   }
 }
