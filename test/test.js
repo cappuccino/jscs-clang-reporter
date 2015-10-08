@@ -1,34 +1,69 @@
 "use strict";
 
-var child_process = require("child_process"),
+var configFile = require("jscs/lib/cli-config"),
     fs = require("fs"),
-    path = require("path");
+    Checker = require("jscs"),
+    path = require("path"),
+    reporter = require("../lib/index.js");
+
+var baseDir = "test/fixtures";  // jscs: ignore
 
 function readFixture(name)
 {
-    return fs.readFileSync(path.join("test/fixtures", name + ".txt"), "utf8");
+    return fs.readFileSync(path.join(baseDir, name + ".txt"), "utf8");
 }
 
-function test(verbose)
+function writeFixture(name, data)
 {
-    var arg = verbose ? ["-v"] : [],
-        type = verbose ? "Verbose" : "Non-verbose",
-        result = child_process.spawnSync(
-            "node_modules/.bin/jscs",
-            arg.concat("-r . test/fixtures".split(" ")),
-            { encoding: "utf8" }
-        );
+    var fixturePath = path.join(baseDir, name + ".txt");
 
-    if (result.status === 2)
-    {
-        if (result.stdout === readFixture("test" + (verbose ? "-verbose" : "")))
-            console.log("%s test passed", type);
-        else
-            console.log("%s test failed: output did match fixture", type);
-    }
-    else
-        console.log("%s test failed: expected status 2, got %d (%s)", type, result.status, result.stderr.trim());
+    console.log("Generated " + fixturePath);
+
+    return fs.writeFileSync(fixturePath, data, { encoding: "utf8" });
 }
 
-test(false);
-test(true);
+function check(checker, verbose)
+{
+    checker._verbose = verbose;
+
+    var files = fs.readdirSync(baseDir),
+        errors = [];
+
+    files.forEach(function(file)
+    {
+        if (path.extname(file) === ".js")
+        {
+            var code = fs.readFileSync(path.join(baseDir, file), { encoding: "utf8" });
+
+            errors.push(checker.checkString(code));
+        }
+    });
+
+    return reporter(errors, { colorize: true, log: false });
+}
+
+function compareWithFixture(name, text)
+{
+    if (text === readFixture(name))
+        console.log(name + " passed");
+    else
+        console.log(name + " failed: output did match fixture");
+}
+
+var generate = process.argv[2] === "generate",
+    checker = new Checker(),
+    config = configFile.load();
+
+checker.registerDefaultRules();
+checker.configure(config);
+
+[false, true].forEach(function(verbose)
+{
+    var output = check(checker, verbose),
+        name = "test" + (verbose ? "-verbose" : "");
+
+    if (generate)
+        writeFixture(name, output);
+    else
+        compareWithFixture(name, output);
+});

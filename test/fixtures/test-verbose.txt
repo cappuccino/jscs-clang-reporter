@@ -1,8 +1,8 @@
-test/fixtures/test1.js:7:3: One space required after "if" keyword [requireSpaceAfterKeywords]
+[36m[1minput[22m[39m[2m:[22m[90m[1m7:3[22m[39m[2m:[22m [90m[1mOne space required after "if" keyword [requireSpaceAfterKeywords][22m[39m
 if(bad) worse ();
-  ^
-test/fixtures/test2.js:5:5: Let declarations should be joined [requireMultipleVarDecl]
+  [32m[1m^[22m[39m
+[36m[1minput[22m[39m[2m:[22m[90m[1m5:5[22m[39m[2m:[22m [90m[1mLet declarations should be joined [requireMultipleVarDecl][22m[39m
     let b = { two: 2 };
-    ^
-
-2 code style errors found.
+    [32m[1m^[22m[39m
+[31m[1m
+✖ 2 errors[22m[39m
