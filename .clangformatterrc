@@ -1,8 +1,11 @@
 {
+    "colorize": true,
     "colors": {
         "file": "green.bold.underline",
         "location": "cyan.bold",
-        "caret": "magenta",
-        "summary": "yellow"
+        "caret": "magenta.bold",
+        "summary": "yellow",
+        "message": "yellow.bold",
+        "rule": "green.dim"
     }
 }

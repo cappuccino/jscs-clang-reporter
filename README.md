@@ -5,11 +5,9 @@ jscs-clang-reporter
 
 This reporter for [JSCS](http://jscs.info) provides more concise output than the JSCS `console` reporter, but more information than the JSCS one-line reporters. The output is formatted similar to the error output from `clang`.
 
-Here is sample output in non-verbose mode and verbose mode (passing `-v|--verbose` on command line):
+Here is sample output in verbose mode (passing `-v|--verbose` on command line):
 
 ![ ](docs/report.png)
-
-![ ](docs/report-verbose.png)
 
 
 
@@ -65,18 +63,19 @@ By default, the elements of each error message are colorized with the following 
 
 Name      | Color
 :-------  | :-----
-file      | cyan.bold
-location  | gray.bold
-message   | gray.bold
+file      | green.bold
+location  | bold
+message   | bold
+rule      | bold.dim
 separator | dim
 source    | null
-caret     | green.bold
-summary   | red
+caret     | magenta.bold
+summary   | red.bold
 
 A formatted error message has the following structure:
 
 ```
-<file>:<location>: <message>
+<file>:<location>: <message> <rule>
 <source>
 <caret>
 ```
@@ -86,6 +85,7 @@ The elements of the message are:
 - **file** - The filename where the error occurred.
 - **location** - The one-based line:column within the entire source where the issue occurred.
 - **message** - The error message.
+- **rule** - If verbose mode is on, the name of the offending rule in `[]`.
 - **source** - The line of code within the file where the issue occurred.
 - **caret** - `^` marks the position within `<source>` where the error occurred.
 - **separator** - The ":" characters in the first line are colorized with the "separator" color in the color map.
@@ -105,7 +105,7 @@ Here is a sample color map:
 	     "separator": "green",
 	     "source": "inverse",
 	     "caret": "cyan.bold",
-	     "summary": "magenta"
+	     "summary": null
 	 }
 }
 ```

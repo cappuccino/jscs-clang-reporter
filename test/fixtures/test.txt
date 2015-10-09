@@ -1,8 +1,8 @@
-[32m[1m[4minput[24m[22m[39m[2m:[22m[36m[1m7:3[22m[39m[2m:[22m [90m[1mOne space required after "if" keyword[22m[39m
+[32m[1m[4minput[24m[22m[39m[2m:[22m[36m[1m7:3[22m[39m[2m:[22m [33m[1mOne space required after "if" keyword[22m[39m
 if(bad) worse ();
-  [35m^[39m
-[32m[1m[4minput[24m[22m[39m[2m:[22m[36m[1m5:5[22m[39m[2m:[22m [90m[1mLet declarations should be joined[22m[39m
+  [35m[1m^[22m[39m
+[32m[1m[4minput[24m[22m[39m[2m:[22m[36m[1m5:5[22m[39m[2m:[22m [33m[1mLet declarations should be joined[22m[39m
     let b = { two: 2 };
-    [35m^[39m
+    [35m[1m^[22m[39m
 [33m
 ✖ 2 errors[39m

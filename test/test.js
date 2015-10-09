@@ -11,7 +11,7 @@ var baseDir = "test/fixtures";  // jscs: ignore
 
 function readFixture(name)
 {
-    return fs.readFileSync(path.join(baseDir, name + ".txt"), "utf8");
+    return fs.readFileSync(path.join(baseDir, name + ".txt"), { encoding: "utf8" });
 }
 
 function writeFixture(name, data)

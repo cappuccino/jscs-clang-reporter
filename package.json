@@ -21,7 +21,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "lint": "node_modules/.bin/eslint lib && node_modules/.bin/jscs lib",
+    "lint": "eslint lib && jscs lib",
     "test": "npm run lint && node test/test.js",
     "generate-fixtures": "node test/test.js generate",
     "postversion": "git push && git push --tags && npm publish"
