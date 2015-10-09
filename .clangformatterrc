@@ -1,0 +1,8 @@
+{
+    "colors": {
+        "file": "green.bold.underline",
+        "location": "cyan.bold",
+        "caret": "magenta",
+        "summary": "yellow"
+    }
+}

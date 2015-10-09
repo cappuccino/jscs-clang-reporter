@@ -3,9 +3,9 @@ jscs-clang-reporter
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
-This reporter for [JSCS](http://jscs.info) provides more concise output than the JSCS `console` reporter, but more information than the JSCS one-line reporters. The output is formatted and colored similar to the error output from `clang`.
+This reporter for [JSCS](http://jscs.info) provides more concise output than the JSCS `console` reporter, but more information than the JSCS one-line reporters. The output is formatted similar to the error output from `clang`.
 
-Here is sample output in non-verbose mode and verbose mode (passing -v on command line):
+Here is sample output in non-verbose mode and verbose mode (passing `-v|--verbose` on command line):
 
 ![ ](docs/report.png)
 
@@ -17,7 +17,9 @@ Here is sample output in non-verbose mode and verbose mode (passing -v on comman
 
 Install into your project with `npm` in the usual way:
 
-`npm i jscs-clang-reporter`
+```sh
+npm i jscs-clang-reporter
+```
 
 
 
@@ -25,7 +27,9 @@ Install into your project with `npm` in the usual way:
 
 To use with JSCS, specify the path to the reporter on the command line:
 
-`jscs -r node_modules/jscs-clang-reporter lib`
+```sh
+jscs -r node_modules/jscs-clang-reporter lib
+```
 
 Note that the reporter will obey the `--no-colors` flag if it passed on the command line.
 
@@ -43,28 +47,31 @@ gulp.task("default", () => {
 
 ## Customization
 
-If you using this reporter programmatically and the interface supports passing options to the reporter, you can configure the behavior of the reporter by passing an options object. There are two possible options, `colorize` and `colors`.
+You can configure the behavior of the reporter by creating a `.clangformatterrc` file in JSON format. The reporter searches for this file starting at the current working directory, then traversing up to the root of the filesystem. If the current user's home directory was not traversed, that is searched as well.
+
+There are two possible properties in `.clangformatterrc`, `colorize` and `colors`.
 
 
 ### colorize
 
-If this property is set to a truthy value, the output of the reporter will be colorized, and not colorized otherwise.
+Output is colorized by default, unless `-n|--no-colors` is passed on the command line. If colorizing was not disabled on the command line and this property is set to a boolean, this property will be used to determine colorizing.
 
 
 ### colors
 
-You can use this property to customize the colors used by the reporter. If `colorize` is not truthy, this property is ignored.
+Use this property to customize the colors used by the reporter. If colorization is off, this property is ignored.
 
 By default, the elements of each error message are colorized with the following [chalk](https://github.com/chalk/chalk) colors (`null` means no colorizing):
 
 Name      | Color
 :-------  | :-----
-file      | red.bold
+file      | cyan.bold
 location  | gray.bold
 message   | gray.bold
 separator | dim
 source    | null
 caret     | green.bold
+summary   | red
 
 A formatted error message has the following structure:
 
@@ -83,27 +90,23 @@ The elements of the message are:
 - **caret** - `^` marks the position within `<source>` where the error occurred.
 - **separator** - The ":" characters in the first line are colorized with the "separator" color in the color map.
 
-You can customize these colors by passing your own color map in the `colors` options property. The map should be an object whose keys are one of the element names listed above, and whose values can either be strings or `chalk` functions. If you use strings, they should be the equivalent of the dotted `chalk` function, but without the "chalk." prefix.
+In addition, **summary** refers to the color used for the summary of how many errors were found.
 
-Here are two equivalent color maps:
+You can customize these colors by passing your own color map in the `colors` property. The map should be an object whose keys are one of the element names listed above, and whose values are the equivalent of the dotted `chalk` function, but without the "chalk." prefix.
 
-```js
+Here is a sample color map:
+
+```json
 {
-    file: "bgBlue.yellow",
-    location: "blue.underline",
-    message: "bgGreen.bold",
-    separator: "green",
-    source: "inverse",
-    caret: "cyan.bold"
-}
-
-{
-    file: chalk.bgBlue.yellow,
-    location: chalk.blue.underline,
-    message: chalk.bgGreen.bold,
-    separator: chalk.green,
-    source: chalk.inverse,
-    caret: chalk.cyan.bold
+    "colors": {
+        "file": "bgBlue.yellow",
+	     "location": "blue.underline",
+	     "message": "bgGreen.bold",
+	     "separator": "green",
+	     "source": "inverse",
+	     "caret": "cyan.bold",
+	     "summary": "magenta"
+	 }
 }
 ```
 

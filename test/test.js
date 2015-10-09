@@ -1,6 +1,7 @@
 "use strict";
 
-var configFile = require("jscs/lib/cli-config"),
+var captureStream = require("capture-stream"),
+    configFile = require("jscs/lib/cli-config"),
     fs = require("fs"),
     Checker = require("jscs"),
     path = require("path"),
@@ -39,7 +40,11 @@ function check(checker, verbose)
         }
     });
 
-    return reporter(errors, { colorize: true, log: false });
+    var restore = captureStream(process.stdout);
+
+    reporter(errors, { colorize: true, log: false });
+
+    return restore(true);
 }
 
 function compareWithFixture(name, text)
