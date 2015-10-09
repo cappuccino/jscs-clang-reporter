@@ -17,7 +17,7 @@
   },
   "bugs": "https://github.com/cappuccino/jscs-clang-reporter/issues",
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=0.10.0"
   },
   "main": "lib/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.0",
+    "os-homedir": "^1.0.1",
     "path-exists": "^2.0.0"
   },
   "devDependencies": {
