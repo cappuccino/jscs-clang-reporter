@@ -4,7 +4,7 @@
         "file": "green.bold.underline",
         "location": "cyan.bold",
         "caret": "magenta.bold",
-        "summary": "yellow",
+        "summary": "magenta",
         "message": "yellow.bold",
         "rule": "green.dim"
     }
