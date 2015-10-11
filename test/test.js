@@ -11,7 +11,7 @@ var baseDir = "test/fixtures";  // jscs: ignore
 
 function readFixture(name)
 {
-    return fs.readFileSync(path.join(baseDir, name + ".txt"), { encoding: "utf8" });
+    return fs.readFileSync(path.join(baseDir, name + ".txt"), "utf8");
 }
 
 function writeFixture(name, data)
@@ -20,7 +20,7 @@ function writeFixture(name, data)
 
     console.log("Generated " + fixturePath);
 
-    return fs.writeFileSync(fixturePath, data, { encoding: "utf8" });
+    return fs.writeFileSync(fixturePath, data);
 }
 
 function check(checker, verbose)
@@ -34,7 +34,7 @@ function check(checker, verbose)
     {
         if (path.extname(file) === ".js")
         {
-            var code = fs.readFileSync(path.join(baseDir, file), { encoding: "utf8" });
+            var code = fs.readFileSync(path.join(baseDir, file), "utf8");
 
             errors.push(checker.checkString(code));
         }
