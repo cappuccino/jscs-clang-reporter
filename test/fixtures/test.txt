@@ -1,3 +1,4 @@
+
 [32m[1m[4minput[24m[22m[39m[2m:[22m[36m[1m7:3[22m[39m[2m:[22m [33m[1mOne space required after "if" keyword[22m[39m
 if(bad) worse ();
   [35m[1m^[22m[39m
