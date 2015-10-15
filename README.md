@@ -1,7 +1,7 @@
 jscs-clang-reporter
 ===================
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Build status][appveyor-image]][appveyor-url]
 
 This reporter for [JSCS](http://jscs.info) provides more concise output than the JSCS `console` reporter, but more information than the JSCS one-line reporters. The output is formatted similar to the error output from `clang`.
 
@@ -117,3 +117,6 @@ You do not need to set all of the values in the map if you only wish to override
 
 [travis-url]: https://travis-ci.org/cappuccino/jscs-clang-reporter
 [travis-image]: https://travis-ci.org/cappuccino/jscs-clang-reporter.svg?branch=master
+
+[appveyor-url]: https://ci.appveyor.com/project/aparajita/jscs-clang-reporter
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/p6oiux8x9j2y7k9j?svg=true
