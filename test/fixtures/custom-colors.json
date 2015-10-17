@@ -1,0 +1,8 @@
+{
+    "colorize": true,
+    "colors": {
+        "file": "blue.bold.underline",
+        "message": "bgMagenta.bold",
+        "caret": "white.bgGreen"
+    }
+}

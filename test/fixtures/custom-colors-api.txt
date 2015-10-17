@@ -1,0 +1,9 @@
+
+[34m[1m[4minput[24m[22m[39m[2m:[22m7:3[2m:[22m [45m[1mOne space required after "if" keyword[22m[49m
+if(bad) worse ();
+  [37m[42m^[49m[39m
+[34m[1m[4minput[24m[22m[39m[2m:[22m5:5[2m:[22m [45m[1mLet declarations should be joined[22m[49m
+    let b = { two: 2 };
+    [37m[42m^[49m[39m
+[31m[1m
+2 errors found.[22m[39m

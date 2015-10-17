@@ -10,7 +10,6 @@ Here is sample output in verbose mode (passing `-v|--verbose` on command line):
 ![ ](docs/report.png)
 
 
-
 ## Installation
 
 Install into your project with `npm` in the usual way:
@@ -18,7 +17,6 @@ Install into your project with `npm` in the usual way:
 ```sh
 npm i jscs-clang-reporter
 ```
-
 
 
 ## Usage
@@ -42,20 +40,62 @@ gulp.task("default", () => {
 ```
 
 
-
 ## Customization
 
-You can configure the behavior of the reporter by creating a `.clangformatterrc` file in JSON format. The reporter searches for this file starting at the current working directory, then traversing up to the root of the filesystem. If the current user's home directory was not traversed, that is searched as well.
+You can configure the behavior of the reporter with a config object. By default, the reporter looks for a config object in a `.clangformatterrc` file. The reporter searches for this file starting at the current working directory, then traversing up to the root of the filesystem. If the current user's home directory was not traversed, that is searched as well.
 
-There are two possible properties in `.clangformatterrc`, `colorize` and `colors`.
+A sample `.clangformatterrc` looks like this:
+
+```json
+{
+    "colorize": true,
+    "colors": {
+        "file": "blue.bold.underline",
+        "message": "magenta.bold",
+        "caret": "white.bgGreen"
+    },
+    "showRule": false
+}
+```
+
+If you are calling the reporter directly in your code, you can pass a config object with a `"clangFormatter"` property, which should be a formatter config object. For example:
+
+```js
+var Checker = require("jscs"),
+    reporter = require("./node_modules/jscs-clang-reporter");
+
+var checker = new Checker(),
+    errors = [];
+
+checker.registerDefaultRules();
+errors.push(checker.checkString(code));
+
+var config = {
+        clangFormatter: {
+            colors: {
+                file: "green",
+                message: "magenta.bold"
+            }
+        }
+    };
+    
+reporter(error, config);
+```
+
+Passing a config object directly overrides `.clangformatterrc`.
 
 
-### colorize
+### Config properties
+
+There are several possible properties in a formatter config object:
+
+
+#### colorize
 
 Output is colorized by default, unless `-n|--no-colors` is passed on the command line. If colorizing was not disabled on the command line and this property is set to a boolean, this property will be used to determine colorizing.
 
 
-### colors
+#### colors
 
 Use this property to customize the colors used by the reporter. If colorization is off, this property is ignored.
 
@@ -63,13 +103,13 @@ By default, the elements of each error message are colorized with the following 
 
 Name      | Color
 :-------  | :-----
-file      | green.bold
-location  | bold
+file      | cyan
+location  | null
 message   | bold
-rule      | bold.dim
+rule      | gray.bold
 separator | dim
 source    | null
-caret     | magenta.bold
+caret     | green.bold
 summary   | red.bold
 
 A formatted error message has the following structure:

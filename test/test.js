@@ -1,7 +1,7 @@
 "use strict";
 
 var captureStream = require("capture-stream"),
-    configFile = require("jscs/lib/cli-config"),
+    jscsConfigFile = require("jscs/lib/cli-config"),
     fs = require("fs"),
     Checker = require("jscs"),
     path = require("path"),
@@ -16,21 +16,27 @@ function readFixture(name)
 
 function writeFixture(name, data)
 {
-    var fixturePath = path.join(baseDir, name + ".txt");
+    console.log(name);
 
-    console.log("Generated " + fixturePath);
-
-    return fs.writeFileSync(fixturePath, data);
+    return fs.writeFileSync(path.join(baseDir, name + ".txt"), data);
 }
 
-function check(checker, verbose)
+function check(checker, configName, method)
 {
-    checker._verbose = verbose;
+    checker._verbose = configName.indexOf("show-rule") !== -1;
 
-    var files = fs.readdirSync(baseDir),
-        errors = [];
+    var configPath = path.join(baseDir, configName + ".json"),
+        configFile = fs.readFileSync(configPath, "utf8"),
+        config;
 
-    files.forEach(function(file)
+    if (method === "rc")
+        fs.writeFileSync(".clangformatterrc", configFile);
+    else
+        config = { clangFormatter: JSON.parse(configFile) };
+
+    var errors = [];
+
+    fs.readdirSync(baseDir).forEach(function(file)
     {
         if (path.extname(file) === ".js")
         {
@@ -42,7 +48,10 @@ function check(checker, verbose)
 
     var restore = captureStream(process.stdout);
 
-    reporter(errors, { colorize: true, log: false });
+    reporter(errors, config);
+
+    if (method === "rc")
+        fs.unlink(".clangformatterrc");
 
     return restore(true);
 }
@@ -57,18 +66,36 @@ function compareWithFixture(name, text)
 
 var generate = process.argv[2] === "generate",
     checker = new Checker(),
-    config = configFile.load();
+    config = jscsConfigFile.load();
+
+if (generate)
+    console.log("Generating fixtures...");
 
 checker.registerDefaultRules();
 checker.configure(config);
 
-[false, true].forEach(function(verbose)
+fs.readdirSync(baseDir).forEach(function(configName)
 {
-    var output = check(checker, verbose),
-        name = "test" + (verbose ? "-verbose" : "");
+    if (path.extname(configName) === ".json")
+    {
+        configName = path.basename(configName, path.extname(configName));
 
-    if (generate)
-        writeFixture(name, output);
-    else
-        compareWithFixture(name, output);
+        ["rc", "api"].forEach(function(method)
+        {
+            var output = check(checker, configName, method),
+                name = configName + "-" + method;
+
+            if (generate)
+                writeFixture(name, output);
+            else
+                compareWithFixture(name, output);
+
+            // Also compare rc version to API version, they should be the same
+            if (method === "rc")
+            {
+                output = readFixture(name);
+                compareWithFixture(configName + "-api", output);
+            }
+        });
+    }
 });

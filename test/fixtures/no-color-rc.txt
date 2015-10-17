@@ -1,0 +1,9 @@
+
+input:7:3: One space required after "if" keyword
+if(bad) worse ();
+  ^
+input:5:5: Let declarations should be joined
+    let b = { two: 2 };
+    ^
+
+2 errors found.
