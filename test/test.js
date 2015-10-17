@@ -51,7 +51,7 @@ function check(checker, configName, method)
     reporter(errors, config);
 
     if (method === "rc")
-        fs.unlink(".clangformatterrc");
+        fs.unlinkSync(".clangformatterrc");
 
     return restore(true);
 }
