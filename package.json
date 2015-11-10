@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "capture-stream": "^0.1.1",
-    "eslint": "^1.x",
+    "eslint": "^1.9",
     "eslint-config-cappuccino": ">=1.1.13",
     "jscs": ">=1.8.0",
     "jscs-cappuccino": "^1.0.0"
