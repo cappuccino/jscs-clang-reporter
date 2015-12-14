@@ -1,7 +1,9 @@
 jscs-clang-reporter
 ===================
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Build status][appveyor-image]][appveyor-url]
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependencies status][dependencies-image]][dependencies-url]
 
 This reporter for [JSCS](http://jscs.info) provides more concise output than the JSCS `console` reporter, but more information than the JSCS one-line reporters. The output is formatted similar to the error output from `clang`.
 
@@ -152,11 +154,11 @@ Here is a sample color map:
 
 You do not need to set all of the values in the map if you only wish to override a few colors; only the elements whose keys are in the map will be affected. To turn off colorizing for an element, pass `null` as the value. Invalid element keys or styles will cause that item in the map to be ignored.
 
+[npm-image]: http://img.shields.io/npm/v/jscs-clang-reporter.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/jscs-clang-reporter
-[npm-image]: http://img.shields.io/npm/v/jscs-clang-reporter.svg?style=flat
 
+[travis-image]: https://img.shields.io/travis/cappuccino/jscs-clang-reporter.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cappuccino/jscs-clang-reporter
-[travis-image]: https://travis-ci.org/cappuccino/jscs-clang-reporter.svg?branch=master
 
-[appveyor-url]: https://ci.appveyor.com/project/aparajita/jscs-clang-reporter
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/p6oiux8x9j2y7k9j?svg=true
+[dependencies-image]: https://img.shields.io/gemnasium/cappuccino/jscs-clang-reporter.svg?style=flat-square
+[dependencies-url]: https://gemnasium.com/cappuccino/jscs-clang-reporter
