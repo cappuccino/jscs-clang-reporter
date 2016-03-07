@@ -36,6 +36,6 @@
     "eslint": "^1.10",
     "eslint-config-cappuccino": ">=1.2.1",
     "jscs": "^2.7.0",
-    "jscs-cappuccino": "^1.0.0"
+    "jscs-cappuccino": "^1.1.0"
   }
 }
