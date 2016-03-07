@@ -1,6 +1,6 @@
 {
   "name": "jscs-clang-reporter",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Reporter for jscs that follows clang error style",
   "homepage": "https://github.com/cappuccino/jscs-clang-reporter",
   "keywords": [
